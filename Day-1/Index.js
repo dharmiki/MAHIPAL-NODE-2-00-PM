@@ -2,7 +2,6 @@ const express = require("express");
 let app = express();
 let port = 4001;
 
-// ------- Simple Students Array -------
 let students = [
     { id: "1", name: "mishri", surname: "malaviya" },
     { id: "2", name: "mishti", surname: "malaviya" }
