@@ -1,12 +1,14 @@
-const express = require("express")
-const port = 5000
-const app = express()
-const db = require("./Config/db")
+const express = require("express");
+const port = 5000;
+const app = express();
 
-app.set("view engine","ejs")
-app.use(express.urlencoded({extended:true}))
-app.use("/",require("./Routes/route"))
+require("./Config/db");
 
-app.listen(port,(err)=>{
-   err ? console.log("err" +port) : console.log("Your server is created on the port " +port);
-})
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/", require("./Routes/route"));
+
+app.listen(port, () => {
+    console.log("Server running on port " + port);
+});

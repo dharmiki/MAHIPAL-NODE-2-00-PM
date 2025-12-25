@@ -1,38 +1,31 @@
-const schema = require("../model/sechma")
-module.exports.homepage = async (req, res) => {
-    await schema.find({})
-        .then((dat) => {
-            res.render("home" ,{dat})         
-        })
-}
+const Blog = require("../model/sechma");
 
-module.exports.addMovie = async (req, res) => {
-    console.log(req.body)
-    await schema.create(req.body)
-        .then(() => {
-            res.redirect("/")
-        })
+// Home Page
+module.exports.home = async (req, res) => {
+    const blogs = await Blog.find({});
+    res.render("home", { blogs });
+};
 
-}
-module.exports.delete = async (req,res)=>{
-    console.log(req.query.id)
-    await schema.findByIdAndDelete(req.query.id)
-    .then(()=>{
-        res.redirect("/")
-    })
-}
+// Add Blog
+module.exports.addBlog = async (req, res) => {
+    await Blog.create(req.body);
+    res.redirect("/");
+};
 
-module.exports.edit = async(req,res)=>{
-    console.log(req.query.id)
-    await schema.findById(req.query.id)
-    .then((update)=>{
-        res.render("Update",{update})
-    })
-}
+// Delete Blog
+module.exports.deleteBlog = async (req, res) => {
+    await Blog.findByIdAndDelete(req.query.id);
+    res.redirect("/");
+};
 
-module.exports.update = async(req,res)=>{
-    await schema.findByIdAndUpdate(req.body.id,req.body)
-    .then(()=>{
-        res.redirect("/")
-    })
-}
+// Edit Page
+module.exports.editBlog = async (req, res) => {
+    const blog = await Blog.findById(req.query.id);
+    res.render("update", { blog });
+};
+
+// Update Blog
+module.exports.updateBlog = async (req, res) => {
+    await Blog.findByIdAndUpdate(req.body.id, req.body);
+    res.redirect("/");
+};

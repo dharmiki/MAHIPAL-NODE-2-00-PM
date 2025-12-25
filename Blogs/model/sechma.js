@@ -1,18 +1,23 @@
-const mongoose = require("mongoose")
-const schema = mongoose.Schema({
-    urls : {
-        type :String,
-        required : true
-    },
-    name : {
-        type :String,
-        required : true
-    },
-    categ : {
-        type :String,
-        required : true
-    }
-})
+const mongoose = require("mongoose");
 
-const movieschema = mongoose.model("movie",schema)
-module.exports = movieschema
+const blogSchema = new mongoose.Schema({
+    image: {
+        type: String,
+        required: true
+    },
+    title: {
+        type: String,
+        required: true
+    },
+    category: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    }
+});
+
+const Blog = mongoose.model("Blog", blogSchema);
+module.exports = Blog;

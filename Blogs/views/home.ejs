@@ -29,13 +29,16 @@
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="d-flex justify-content-between align-items-center flex-col">
-            <h3>Add list</h3><br><br>
-            <form action="/addMovie" method="post">
-                <input placeholder="enter the url" name="urls" class="border form-control"><br><br>
-                <input placeholder="enter the movie name" name="name" class="border form-control"><br><br>
-                <input placeholder="enter the categ" name="categ" class="border  form-control"><br><br>
-                <button type="submit" class="btn m-auto">Submit</button>
+            <h1>Blog List</h1>
+
+            <form action="/addBlog" method="post">
+                <input name="image" placeholder="Image URL"><br><br>
+                <input name="title" placeholder="Blog Title"><br><br>
+                <input name="category" placeholder="Category"><br><br>
+                <textarea name="description" placeholder="Description"></textarea><br><br>
+                <button type="submit">Add Blog</button>
             </form>
+
         </div>
     </div>
     <section class="d-flex align-items-center justify-content-evenly w-[100%] h-auto flex-col">
@@ -43,24 +46,23 @@
             <h1>Movie Shows</h1>
         </div>
         <div class="w-[100%] h-[auto] d-flex align-items-center justify-content-evenly">
-            <%dat.map((el,i)=>{%>
-                <div class="w-[15%] mt-[20px] h-[350px] border border-danger">
-                    <div class="w-[100%] h-[50%] border">
-                        <img src="<%=el.urls%>" class="w-[100%] h-[100%]">
-                    </div>
-                    <div>
-                        <p>
-                            <%=el.name%>
-                        </p>
-                        <p>
-                            <%=el.categ%>
-                        </p>
-                        <a href="/editmovie?id=<%=el.id%>"><button class="btn btn-secondary">Edit</button></a>
-                        <a href="/deletemovie?id=<%=el.id%>"><button class="btn btn-secondary">Delete</button></a>
+            <% blogs.forEach(blog=> { %>
+                <div style="border:1px solid black; padding:10px; margin:10px;">
+                    <img src="<%= blog.image %>" width="200"><br>
+                    <h3>
+                        <%= blog.title %>
+                    </h3>
+                    <p><b>Category:</b>
+                        <%= blog.category %>
+                    </p>
+                    <p>
+                        <%= blog.description %>
+                    </p>
 
-                    </div>
+                    <a href="/editBlog?id=<%= blog._id %>">Edit</a> |
+                    <a href="/deleteBlog?id=<%= blog._id %>">Delete</a>
                 </div>
-                <%})%>
+                <% }) %>
         </div>
     </section>
 </body>

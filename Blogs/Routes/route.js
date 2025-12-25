@@ -1,15 +1,11 @@
-const express = require("express")
-const route = express.Router()
-const ctl = require("../Controller/ctl")
+const express = require("express");
+const router = express.Router();
+const ctl = require("../Controller/ctl");
 
+router.get("/", ctl.home);
+router.post("/addBlog", ctl.addBlog);
+router.get("/deleteBlog", ctl.deleteBlog);
+router.get("/editBlog", ctl.editBlog);
+router.post("/updateBlog", ctl.updateBlog);
 
-
-route.get("/",ctl.homepage)
-route.post("/addMovie",ctl.addMovie)
-route.get("/deletemovie",ctl.delete)
-route.get("/editmovie",ctl.edit)
-route.post("/updatemovie",ctl.update)
-
-module.exports = route
-
-
+module.exports = router;
